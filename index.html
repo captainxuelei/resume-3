@@ -1,41 +1,109 @@
-
 <!DOCTYPE html>
 <html>
 
 <head>
   <title>薛磊的个人简历</title>
   <link rel="stylesheet" href="./a.css">
+  <!--<link rel="stylesheet" href="./loading.css">-->
   <script src="//at.alicdn.com/t/font_670022_yv05teyrbiou5wmi.js"></script>
   <style type="text/css">
-    .icon {
-       width: 1em; height: 1em;
-       vertical-align: -0.15em;
-       fill: currentColor;
-       overflow: hidden;
+    .loading {
+      width: 200px;
+      height: 200px;
+      position: relative;
     }
-</style>
+
+    .loading::before,
+    .loading::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      background: #000;
+      border-radius: 50%;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      animation: s 1.5s linear infinite;
+    }
+
+    .loading::after {
+      animation-delay: 0.75s;
+    }
+
+    @keyframes s {
+      0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+      }
+      100% {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+      }
+    }
+
+    .icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+
+    .site-welcome {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: grey;
+      z-index: 1;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .site-welcome.active {
+      display: flex;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="topNavBar">
+
+  <div id="topNavBar" class="topNavBar">
     <div class="topNavBar-inner clearfix">
       <a class="logo" href="#" alt="logo" style="float: left;">
         <span class="rs">RS</span>
         <span class="card">card</span>
       </a>
-      <nav style="float: right;">
+      <nav class="menu" style="float: right;">
         <ul class="clearfix">
           <li>
-            <a href="#">关于</a>
+            <a href="#siteAbout">关于</a>
           </li>
           <li>
-            <a href="#">技能</a>
+            <a href="#siteSkills">技能</a>
           </li>
           <li>
-            <a href="#">作品</a>
+            <a href="#siteWorks">作品</a>
+            <ul class="subMenu">
+              <li>作品1</li>
+              <li>作品2</li>
+              <li>作品3</li>
+            </ul>
           </li>
           <li>
             <a href="#">博客</a>
+            <ul class="subMenu">
+              <li>博客1</li>
+              <li>博客2</li>
+              <li>博客3</li>
+            </ul>
           </li>
           <li>
             <a href="#">日历</a>
@@ -54,7 +122,7 @@
     <div class="mask"></div>
   </div>
   <main style="">
-    <div class="userCard">
+    <div data-x id="siteAbout" class="userCard">
       <div class="pictureAndText clearfix">
         <div class="picture">
           <img src="./img/avatar.JPG" width=299 height=347 alt="头像">
@@ -63,7 +131,7 @@
           <span class="welcome">Hello
             <span class="triangle"></span>
           </span>
-          <h1>薛磊</h1>
+          <h1>薛 磊</h1>
           <p>前端开发工程师</p>
           <hr>
           <dl>
@@ -81,17 +149,17 @@
       <footer class="media">
         <a href="#">
           <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-wechat"></use>
+            <use xlink:href="#icon-wechat"></use>
           </svg>
         </a>
         <a href="#">
           <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-github"></use>
+            <use xlink:href="#icon-github"></use>
           </svg>
         </a>
         <a href="#">
           <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-blog"></use>
+            <use xlink:href="#icon-blog"></use>
           </svg>
         </a>
       </footer>
@@ -102,12 +170,12 @@
     </p>
 
     <p class="selfIntroduction">
-        薛磊， 前端工程师。
+      薛磊， 前端工程师。
       <br> 技能：前端开发，Rails 开发，Node.js 开发
     </p>
 
   </main>
-  <section class="skills">
+  <section data-x id="siteSkills" class="skills">
     <h2>技能</h2>
     <ol class="clearfix">
       <li>
@@ -147,7 +215,7 @@
           React.js
         </h3>
         <div class="progressBar">
-          <div class="progress"  style="width: 70%"></div>
+          <div class="progress" style="width: 70%"></div>
         </div>
       </li>
       <li>
@@ -155,12 +223,12 @@
           Node.js
         </h3>
         <div class="progressBar">
-          <div class="progress"  style="width: 60%"></div>
+          <div class="progress" style="width: 60%"></div>
         </div>
       </li>
     </ol>
   </section>
-  <section class="portfolio">
+  <section data-x id="siteWorks" class="portfolio">
     <h2>作品集</h2>
     <nav>
       <ol class="clearfix">
@@ -173,13 +241,13 @@
       </div>
     </nav>
     <script>
-      portfolio1.onclick= function(){
+      portfolio1.onclick = function () {
         portfolioBar.className = 'bar state-1'
       }
-      portfolio2.onclick= function(){
+      portfolio2.onclick = function () {
         portfolioBar.className = 'bar state-2'
       }
-      portfolio3.onclick= function(){
+      portfolio3.onclick = function () {
         portfolioBar.className = 'bar state-3'
       }
     </script>
@@ -198,6 +266,90 @@
     </div>
 
   </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
+  <script>
+
+    //添加offset类
+    let specialTags = document.querySelectorAll('[data-x]')
+    for (let i = 0; i < specialTags.length; i++) {
+      specialTags[i].classList.add('offset')
+    }
+    findClosest()
+
+    window.onscroll = function (x) {
+      if (window.scrollY > 0) {
+        topNavBar.classList.add('sticky')
+      } else {
+        topNavBar.classList.remove('sticky')
+      }
+      findClosest()
+    }
+
+    function findClosest() {
+      let specialTags = document.querySelectorAll('[data-x]')
+      let minIndex = 0
+      for (let i = 1; i < specialTags.length; i++) {
+        if (Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
+          minIndex = i
+        }
+      }
+      specialTags[minIndex].classList.remove('offset')
+      let id = specialTags[minIndex].id
+      let a = document.querySelector('a[href="#' + id + '"]')
+      let li = a.parentNode
+      let allli = li.parentNode.children
+      for (let i = 0; i < allli.length; i++) {
+        allli[i].classList.remove('highlight')
+      }
+      li.classList.add('highlight')
+    }
+
+    let liTags = document.querySelectorAll('nav.menu > ul > li')
+    for (let i = 0; i < liTags.length; i++) {
+      liTags[i].onmouseenter = function (x) {
+        x.currentTarget.classList.add('active')
+      }
+      liTags[i].onmouseleave = function (x) {
+        x.currentTarget.classList.remove('active')
+      }
+    }
+
+    let aTags = document.querySelectorAll('nav.menu > ul > li > a')
+
+    // Setup the animation loop.
+    function animate(time) {
+      requestAnimationFrame(animate);
+      TWEEN.update(time);
+    }
+    requestAnimationFrame(animate);
+
+
+
+    for (let i = 0; i < aTags.length; i++) {
+      aTags[i].onclick = function (x) {
+        x.preventDefault()
+        let a = x.currentTarget
+        let href = a.getAttribute('href')
+        let element = document.querySelector(href)
+        let top = element.offsetTop
+
+        let currentTop = window.scrollY
+        let targetTop = top - 80
+        let distance = targetTop - currentTop
+        var coords = { y: currentTop };
+        let t = Math.abs(distance / 100 * 300)
+        if (t > 500) { t = 500 }
+        var tween = new TWEEN.Tween(coords)
+          .to({ y: targetTop }, t)
+          .easing(TWEEN.Easing.Quadratic.InOut)
+          .onUpdate(function () {
+            window.scrollTo(0, coords.y)
+          })
+          .start();
+      }
+    }
+
+  </script>
 </body>
 
 </html>
