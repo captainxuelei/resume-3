@@ -126,6 +126,7 @@ section.portfolio{
   margin-top: 60px;
 }
 section.skills > h2 ,
+section.message > h2 ,
 section.portfolio > h2 {
   text-align: center;
   color: #3d4451;
